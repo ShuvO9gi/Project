@@ -1,0 +1,9 @@
+npm i express dotenv ejs mongoose multer cookie-parser express-validator jsonwebtoken bcrypt http-errors
+
+server will run for all changes in the vs code:
+npm install -g nodemon = for globally installation
+npm install --save-dev nodemon = for project wise installation
+
+COOKIE_SECRET = secret key(first:<https://api.wordpress.org/secret-key/1.1/salt/> 
+    copy a code , second: <http://www.sha1-online.com/> paste the copied code and hash that code)
+
