@@ -60,20 +60,20 @@
         }
 
         //prepare the form data //create a form data object
-        const formdata = new FormData(form)
+        const formdata = new FormData(form);
 
         //send the request to the server
-        let response = await fetch("/users", {method: "POST", body: formdata})
+        let response = await fetch("/users", {method: "POST", body: formdata});
 
         //get the response
-        let result = await response.json()
+        let result = await response.json();
 
         //handle error & response
         if(result.errors) {
             //errors
             Object.keys(result.errors).forEach((fieldName) => {
                 //add error class to all inputs
-                form[fieldName].classList.add("error")
+                form[fieldName].classList.add("error");
 
                 //set all error placeholders (p tag) textContent
                 const errorPlaceholder = document.querySelector(`.${fieldName}-error`);

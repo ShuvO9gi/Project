@@ -2,27 +2,32 @@
 const express = require("express");
 
 //internal imports
-const { getLogin } = require("../controller/loginController");
+const { getLogin, login, logout } = require("../controller/loginController");
 const decoratedHTMLResponse = require("../middleware/common/decoratedHTMLResponse");
-const avatarUpload = require("../middleware/users/avatarUpload");
 const {
-  addUserValidators,
-  addUserValidationHandler,
-} = require("../middleware/users/userValidators");
-const { addUser } = require("../controller/usersController");
+  doLoginValidator,
+  doLoginValidationHandler,
+} = require("../middleware/login/loginValidators");
+const { redirectLoggedIn } = require("../middleware/common/checkLogin");
 
 const router = express.Router();
 
-//users page
-router.get("/", decoratedHTMLResponse("Login"), getLogin);
+//set page title
+const page_title = "Login";
 
-//add user
+//login page
+router.get("/", decoratedHTMLResponse("Login"), redirectLoggedIn, getLogin);
+
+//process login
 router.post(
   "/",
-  avatarUpload,
-  addUserValidators,
-  addUserValidationHandler,
-  addUser
+  decoratedHTMLResponse(page_title),
+  doLoginValidator,
+  doLoginValidationHandler,
+  login
 );
+
+//logout
+router.delete("/", logout);
 
 module.exports = router;

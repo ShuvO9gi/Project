@@ -52,6 +52,7 @@
         text: "Could not delete the user!",
         duration: 3000,
       });
+      
       //delete user function
       async function deleteUser(userId) {
         const response = await fetch(`/users/${userId}`, {
